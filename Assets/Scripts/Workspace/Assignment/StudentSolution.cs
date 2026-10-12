@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;   
 using UnityEditor;
 using UnityEngine;
 
@@ -107,18 +108,75 @@ namespace Assignment
 
         public int[] AS01_FindFirstAndLastElementOfArray(int[] array, int target)
         {
+            int firstIndex = -1;
+            int lastIndex = -1;
 
-            throw new NotImplementedException();
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == target)
+                {
+                    if (firstIndex == -1)
+                    {
+                        firstIndex = i;
+                    }
+                    lastIndex = i;
+                }
+            }
+            if (firstIndex == -1 && lastIndex == -1)
+            {
+                 return new int[] { -1 };
+            }
+
+            return new[] { firstIndex, lastIndex };
         }
 
         public int AS02_FindMaxLessThan(int[] array, int target)
         {
-            throw new NotImplementedException();
+            int maxValue = -1;
+            bool found = false;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                int num = array[i];
+
+                if (num < target)
+                {
+                    if (!found || num > maxValue)
+                    {
+                        maxValue = num;
+                        found = true; 
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                return -1;
+            }
+
+            return maxValue;
         }
 
         public int[] AS03_FindRange(int[] array, int min, int max)
         {
-            throw new NotImplementedException();
+            List<int> result = new List<int>();
+
+            if (min > max)
+            {
+                return result.ToArray();
+            }
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                int value = array[i];
+                
+                if (value >= min && value <= max)
+                {
+                    result.Add(value);
+                }
+            }
+
+            return result.ToArray();
         }
 
         #endregion
